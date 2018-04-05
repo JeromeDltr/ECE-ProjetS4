@@ -5,14 +5,21 @@
 
 int main()
 {
+
+    bool bo=1;
+
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
-    grman::init();
+
+
+    do
+    {
+            grman::init();
 
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
     Graph g;
 
-        /// Un exemple de graphe
+    /// Un exemple de graphe
     g.make_example();
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -28,6 +35,11 @@ int main()
 
 
     grman::fermer_allegro();
+
+    std::cout<<"Voulez-vous continuer ? 0 pour continuer et 1 pour arreter"<<std::endl;
+    std::cin>>bo;
+
+    }while(bo!=1);
 
     return 0;
 }

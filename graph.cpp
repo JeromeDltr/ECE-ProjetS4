@@ -161,7 +161,6 @@ void Graph::make_example()
 {
     int choice;
     choice=display_menu();
-    ///rectfill(bmp, 0, 450, 800, 600, makecol(0, 0, 0));
     int a, b, c, nb;
     double d;
     std::string ficName, ficNameEdge, ch1;
