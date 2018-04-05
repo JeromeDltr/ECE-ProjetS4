@@ -219,6 +219,12 @@ void buf_afficher_page()
     if (!page)
         return;
     acquire_screen();
+
+    rectfill(page, 0, 0, 100, 100, makecol(100, 0, 0));
+    textprintf_centre_ex(page, font, 50, 50, makecol(255,255,255), -1,"Supprimer");///
+    rectfill(page, 100, 0, 200, 100, makecol(0, 100, 0));
+    textprintf_centre_ex(page, font, 150, 50, makecol(255,255,255), -1,"Ajouter");///
+
     blit(page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
     release_screen();
 }

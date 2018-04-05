@@ -313,6 +313,7 @@ class Graph
 
         int display_menu();
         int continu();
+        int delet(int a);
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

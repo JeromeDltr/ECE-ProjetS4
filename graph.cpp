@@ -321,3 +321,13 @@ int Graph::display_menu()
 }
 
 
+int Graph::delet(int a)
+{
+    //
+    std::cout<<"Delet"<<std::endl;
+    //m_vertices.erase(a);
+
+    return 0;
+}
+
+

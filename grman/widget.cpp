@@ -8,6 +8,8 @@ void rect_around(BITMAP *bmp, int color, int thickness=1, int receding=0)
 {
     for (int i=0+receding; i<thickness+receding; ++i)
         rect(bmp, i, i, bmp->w-1-i, bmp->h-1-i, color);
+        ///void rect(BITMAP *bmp, int x1, int y1, int x2, int y2, int color);
+        ///std::cout<<get_posx()<<std::endl;
 }
 
 
@@ -308,6 +310,8 @@ void WidgetBox::interact_focus()
     {
         m_pos_start_move = m_frame.pos;
     }
+
+    std::cout<<get_posx()<<"\t"<<std::endl;   //
 
     if (m_moveable)
     {

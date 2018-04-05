@@ -65,7 +65,7 @@ class Widget
         int m_border_color_over = VIOLETSOMBRE;
         int m_border_color_focus = ORANGESOMBRE;
 
-        int m_border = 1;
+        int m_border = 2;
         int m_margin = 1;
         int m_padding = 1;
 
@@ -135,7 +135,7 @@ class Widget
         void set_pos(Coords pos) { set_posx(pos.x); set_posy(pos.y); }
 
         int get_posx() { return m_frame.pos.x-get_parent_bp(); }
-        int get_posy() { return m_frame.pos.y-get_parent_bp(); }
+        int get_posy() { return m_frame.pos.y-get_parent_bp(); }    //
         Coords get_pos() { return Coords(get_posx(), get_posy()); }
 
 
