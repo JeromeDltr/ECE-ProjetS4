@@ -14,7 +14,7 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
-    m_slider_value.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_value.set_dim(20,80);
     m_slider_value.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
 
@@ -92,7 +92,7 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
     // Le slider de réglage de valeur
     m_box_edge.add_child( m_slider_weight );
-    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_weight.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_weight.set_dim(16,40);
     m_slider_weight.set_gravity_y(grman::GravityY::Up);
 
@@ -148,6 +148,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_main_box.set_dim(908,720);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
+
 }
 
 
@@ -158,34 +159,72 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 /// "à la main" dans le code comme ça.
 void Graph::make_example()
 {
+    int choice;
+    choice=display_menu();
+    ///rectfill(bmp, 0, 450, 800, 600, makecol(0, 0, 0));
+    int a, b, c, nb;
+    double d;
+    std::string ficName, ficNameEdge, ch1;
+    if(choice==1)
+        ficName = "base.txt";
+    if(choice==2)
+        ficName = "sea.txt";
+    std::ifstream fic(ficName, std::ios::in);
+
+
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
-    /// Les sommets doivent être définis avant les arcs
-    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
-    add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
-    add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
-    add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
-    add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
-    add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
-    add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
-    add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
-    add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+    if(fic)  // si l'ouverture a réussi
+    {
+        // instructions
+        getline(fic, ficNameEdge);
+        fic>>nb;
+        getline(fic, ch1);
+        for(int j = 0 ; j < nb ; j++)  // on lis les "m_ordre" Sommets
+        {
+            fic>>a;
+            getline(fic, ch1);
+            fic>>d;
+            getline(fic, ch1);
+            fic>>b;
+            getline(fic, ch1);
+            fic>>c;
+            getline(fic, ch1);
+            ch1 = "0";
+            getline(fic, ch1);
 
-    /// Les arcs doivent être définis entre des sommets qui existent !
+        /// Les sommets doivent être définis avant les arcs
+        /// Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+            add_interfaced_vertex(a, d, b, c, ch1);
+        }
+        fic.close();  // on ferme le fichier
+    }
+
+    std::ifstream fic2(ficNameEdge, std::ios::in);
+
+    if(fic2)  // si l'ouverture a réussi
+    {
+        // instructions
+        fic2>>nb;
+        getline(fic2, ch1);
+        for(int j = 0 ; j < nb ; j++)  // on lis les "m_ordre" Sommets
+        {
+            fic2>>a;
+            getline(fic2, ch1);
+            fic2>>b;
+            getline(fic2, ch1);
+            fic2>>c;
+            getline(fic2, ch1);
+            fic2>>d;
+            getline(fic2, ch1);
+            /// Les arcs doivent être définis entreficName des sommets qui existent !
     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
-    add_interfaced_edge(0, 1, 2, 50.0);
-    add_interfaced_edge(1, 0, 1, 50.0);
-    add_interfaced_edge(2, 1, 3, 75.0);
-    add_interfaced_edge(3, 4, 1, 25.0);
-    add_interfaced_edge(4, 6, 3, 25.0);
-    add_interfaced_edge(5, 7, 3, 25.0);
-    add_interfaced_edge(6, 3, 4, 0.0);
-    add_interfaced_edge(7, 2, 0, 100.0);
-    add_interfaced_edge(8, 5, 2, 20.0);
-    add_interfaced_edge(9, 3, 7, 80.0);
-    add_interfaced_edge(11, 3, 1, 20.0);
+            add_interfaced_edge(a, b, c, d);
+        }
+        fic2.close();  // on ferme le fichier
+    }
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -244,5 +283,42 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
+    /// OOOPS ! Prendre en compte l'arc ajouté dans la topologie du graphe !
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+
+    m_vertices[id_vert1].m_out.push_back(id_vert2);
+    m_vertices[id_vert2].m_in.push_back(id_vert1);
 }
+
+int Graph::display_menu()
+{
+    bool a = true;
+    int b;
+
+    buffer = create_bitmap(SCREEN_W, SCREEN_H);
+    base = load_bitmap("pics/base.bmp", NULL);
+    sea = load_bitmap("pics/sea.bmp", NULL);
+
+    blit(base, buffer, 0, 0, 150, 100, 200, 200);
+    blit(sea, buffer, 0, 0, 450, 100, 200, 200);
+    blit(buffer, screen, 0, 0, 0, 0, 800, 600);
+
+    do
+    {
+        if((mouse_b&1) && (mouse_x>=150) && (mouse_x<=350) && (mouse_y>=100) && (mouse_y<=300))
+        {
+            b =1;
+            a=false;
+        }
+        if((mouse_b&1) && (mouse_x>=450) && (mouse_x<=650) && (mouse_y>=100) && (mouse_y<=300))
+        {
+            b =2;
+            a=false;
+        }
+        ///rest(100);
+    }while(a==true);
+    return b;
+}
+
 

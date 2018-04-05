@@ -1,0 +1,27 @@
+base-edge.txt
+5
+0
+30.0
+200
+100
+soleil.jpg
+1
+60.0
+400
+100
+plantes vertes.jpg
+2
+50.0
+200
+300
+sauterelle.jpg
+3
+0.0
+400
+300
+merle.jpg
+4
+100.0
+600
+300
+renard.jpg

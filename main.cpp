@@ -10,11 +10,10 @@ int main()
 
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
-
-    /// Un exemple de graphe
     Graph g;
-    g.make_example();
 
+        /// Un exemple de graphe
+    g.make_example();
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -27,10 +26,9 @@ int main()
         grman::mettre_a_jour();
     }
 
+
     grman::fermer_allegro();
 
     return 0;
 }
 END_OF_MAIN();
-
-

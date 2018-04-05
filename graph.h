@@ -75,6 +75,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <fstream>      //      pour lire le fichier
 
 #include "grman/grman.h"
 
@@ -289,6 +290,11 @@ class Graph
         std::shared_ptr<GraphInterface> m_interface = nullptr;
 
 
+        BITMAP *buffer;
+        BITMAP *base;
+        BITMAP *sea;
+
+
     public:
 
         /// Les constructeurs sont à compléter selon vos besoin...
@@ -304,6 +310,9 @@ class Graph
         /// Cette méthode est à enlever et remplacer par un système
         /// de chargement de fichiers par exemple.
         void make_example();
+
+        int display_menu();
+        int continu();
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
