@@ -311,7 +311,7 @@ void WidgetBox::interact_focus()
         m_pos_start_move = m_frame.pos;
     }
 
-    std::cout<<get_posx()<<"\t"<<std::endl;   //
+    std::cout<<get_posx()<<"\t"<<std::endl;   //                     POSX
 
     if (m_moveable)
     {
@@ -360,7 +360,7 @@ void WidgetEdge::draw()
 
     // Détermination des intersections avec les frames des 2 widgets liés
     p[0] = m_attach[0]->get_abs_frame().intersect(vec_dir);
-    p[1] = m_attach[1]->get_abs_frame().intersect(-vec_dir);
+    p[1] = m_attach[1]->get_abs_frame().intersect(-vec_dir);    //
 
     // Dessin du lien cadre à cadre
     thick_line(page, p[0].x, p[0].y, p[1].x, p[1].y, m_thickness, m_color);

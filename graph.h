@@ -293,6 +293,7 @@ class Graph
         BITMAP *buffer;
         BITMAP *base;
         BITMAP *sea;
+        BITMAP *savane;
 
 
     public:
@@ -305,6 +306,8 @@ class Graph
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
+        void del_interfaced_edge(int vert1, int vert2);     //int idx, , double weight=0
+
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
         /// Voir implémentation dans le .cpp
         /// Cette méthode est à enlever et remplacer par un système
@@ -313,7 +316,7 @@ class Graph
 
         int display_menu();
         int continu();
-        int delet(int a);
+        int button();
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

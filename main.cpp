@@ -30,15 +30,8 @@ int main()
             /// Mise à jour générale (clavier/souris/buffer etc...)
             grman::mettre_a_jour();
 
-            if((mouse_b&1) && (mouse_x>=0) && (mouse_x<=100) && (mouse_y>=0) && (mouse_y<=100) && (bo!=2))
-            {
-                bo = 2;
-                std::cout<<"Quel sommet voulez-vous supprimer ?"<<std::endl;
-                std::cin >>a;
-            }
 
-            if(bo==2)
-                bo = g.delet(a);
+                bo = g.button();
         }
 
         grman::fermer_allegro();

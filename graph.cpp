@@ -168,6 +168,8 @@ void Graph::make_example()
         ficName = "base.txt";
     if(choice==2)
         ficName = "sea.txt";
+        if(choice==3)
+        ficName = "savane.txt";
     std::ifstream fic(ficName, std::ios::in);
 
 
@@ -206,7 +208,7 @@ void Graph::make_example()
     if(fic2)  // si l'ouverture a réussi
     {
         // instructions
-        fic2>>nb;
+        fic2 >> nb;
         getline(fic2, ch1);
         for(int j = 0 ; j < nb ; j++)  // on lis les "m_ordre" Sommets
         {
@@ -223,6 +225,8 @@ void Graph::make_example()
             add_interfaced_edge(a, b, c, d);
         }
         fic2.close();  // on ferme le fichier
+
+        std::cout<<"fichier edge"<<std::endl;
     }
 }
 
@@ -290,6 +294,22 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     m_vertices[id_vert2].m_in.push_back(id_vert1);
 }
 
+/// Aide à la suppression d'arcs interfacés
+void Graph::del_interfaced_edge(int id_vert1, int id_vert2)   //int idx, , double weight
+{
+    std::cout<<"Delete edge"<<std::endl;
+    ///EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
+    ///m_interface->m_main_box.remove_child(ei->m_top_edge);
+    /*if ( m_vertices.find(id_vert1)==m_vertices.end() || m_vertices.find(id_vert2)==m_vertices.end() )
+    {
+
+    }
+    if ( m_edges.find(idx)!=m_edges.end() )
+    {
+
+    }*/
+}
+
 int Graph::display_menu()
 {
     bool a = true;
@@ -298,9 +318,11 @@ int Graph::display_menu()
     buffer = create_bitmap(SCREEN_W, SCREEN_H);
     base = load_bitmap("pics/base.bmp", NULL);
     sea = load_bitmap("pics/sea.bmp", NULL);
+    savane = load_bitmap("pics/savane.bmp", NULL);
 
     blit(base, buffer, 0, 0, 150, 100, 200, 200);
     blit(sea, buffer, 0, 0, 450, 100, 200, 200);
+    blit(savane, buffer, 0, 0, 300, 350, 200, 200);
     blit(buffer, screen, 0, 0, 0, 0, 800, 600);
 
     do
@@ -315,19 +337,46 @@ int Graph::display_menu()
             b =2;
             a=false;
         }
+        if((mouse_b&1) && (mouse_x>=300) && (mouse_x<=500) && (mouse_y>=350) && (mouse_y<=550))
+        {
+            b =3;
+            a=false;
+        }
         ///rest(100);
     }while(a==true);
     return b;
 }
 
 
-int Graph::delet(int a)
+int Graph::button()
 {
-    //
-    std::cout<<"Delet"<<std::endl;
+    int a, b;
+
+
     //m_vertices.erase(a);
 
-    return 0;
+        if((mouse_b&1) && (mouse_x>=0) && (mouse_x<=100) && (mouse_y>=0) && (mouse_y<=100))     // && (bo!=2)
+        {
+            std::cout<<"Quel est le premier sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
+            std::cin >>a;
+            std::cout<<"Quel est le deuxieme sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
+            std::cin >>b;
+            std::cout<<"Vous allez supprimer l'arete entre "<<a<<" et "<<b<<std::endl;
+            ///del_interfaced_edge(a, b);
+            ///VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
+            ///m_interface->m_main_box.remove_child(vi->m_top_box);
+        }
+
+        if((mouse_b&1) && (mouse_x>=100) && (mouse_x<=200) && (mouse_y>=0) && (mouse_y<=100))     // && (bo!=2)
+        {
+            std::cout<<"Vous allez ajouter un sommet"<<std::endl;
+            std::cout<<"Vous allez supprimer l'arete entre "<<a<<std::endl;
+            //add_interfaced_vertex(a, d, b, c, ch1);
+            ///del_interfaced_edge(a, b);
+            ///VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
+            ///m_interface->m_main_box.remove_child(vi->m_top_box);
+        }
+        return 0;
 }
 
 
