@@ -1,0 +1,91 @@
+\hypertarget{class_graph}{}\section{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a6d716090e2ae19abf6b40b5f1a7f7f68}{Graph}} (\mbox{\hyperlink{class_graph_interface}{Graph\+Interface}} $\ast$interface=nullptr)
+\item 
+\mbox{\Hypertarget{class_graph_ab7a69c10c16dc4ae88e1131c89fb7e26}\label{class_graph_ab7a69c10c16dc4ae88e1131c89fb7e26}} 
+void \mbox{\hyperlink{class_graph_ab7a69c10c16dc4ae88e1131c89fb7e26}{add\+\_\+interfaced\+\_\+vertex}} (int idx, double value, int x, int y, std\+::string pic\+\_\+name=\char`\"{}\char`\"{}, int pic\+\_\+idx=0)
+\begin{DoxyCompactList}\small\item\em Aide à l\textquotesingle{}ajout de sommets interfacés \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_aa824f04c8fd5a315f23f4af61db9c301}{add\+\_\+interfaced\+\_\+edge}} (int idx, int vert1, int vert2, double weight=0)
+\begin{DoxyCompactList}\small\item\em Aide à l\textquotesingle{}ajout d\textquotesingle{}arcs interfacés \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a5516f61e268b4d26ec632b694c0c1cbb}{del\+\_\+interfaced\+\_\+edge}} (int vert1, int vert2)
+\begin{DoxyCompactList}\small\item\em Aide à la suppression d\textquotesingle{}arcs interfacés \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a3f71937bb0160972192b086cf258d49c}{make\+\_\+example}} ()
+\item 
+int \mbox{\hyperlink{class_graph_a33b4e0f78b1987ecb80b204ec87fe97d}{display\+\_\+menu}} ()
+\item 
+\mbox{\Hypertarget{class_graph_a5341c1edf9803036c958335a0fd8ad79}\label{class_graph_a5341c1edf9803036c958335a0fd8ad79}} 
+int {\bfseries continu} ()
+\item 
+int \mbox{\hyperlink{class_graph_a1816977c1c169d9df917ddacb3e69f09}{button}} (int choice)
+\item 
+\mbox{\Hypertarget{class_graph_a2a502523278fef0e676e40c290cefc19}\label{class_graph_a2a502523278fef0e676e40c290cefc19}} 
+void {\bfseries save\+\_\+file} (int choice)
+\item 
+\mbox{\Hypertarget{class_graph_aca01acf24309641c4cc70e4363d9c4c5}\label{class_graph_aca01acf24309641c4cc70e4363d9c4c5}} 
+void {\bfseries add\+\_\+edge} ()
+\item 
+\mbox{\Hypertarget{class_graph_a97b4fe3e0f119971649ed33e3c364cde}\label{class_graph_a97b4fe3e0f119971649ed33e3c364cde}} 
+void \mbox{\hyperlink{class_graph_a97b4fe3e0f119971649ed33e3c364cde}{update}} ()
+\begin{DoxyCompactList}\small\item\em La méthode update à appeler dans la boucle de jeu pour les graphes avec interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a6d716090e2ae19abf6b40b5f1a7f7f68}\label{class_graph_a6d716090e2ae19abf6b40b5f1a7f7f68}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph_interface}{Graph\+Interface}} $\ast$}]{interface = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Les constructeurs sont à compléter selon vos besoin... Ici on ne donne qu\textquotesingle{}un seul constructeur qui peut utiliser une interface 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_aa824f04c8fd5a315f23f4af61db9c301}\label{class_graph_aa824f04c8fd5a315f23f4af61db9c301}} 
+\index{Graph@{Graph}!add\+\_\+interfaced\+\_\+edge@{add\+\_\+interfaced\+\_\+edge}}
+\index{add\+\_\+interfaced\+\_\+edge@{add\+\_\+interfaced\+\_\+edge}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{add\+\_\+interfaced\+\_\+edge()}{add\_interfaced\_edge()}}
+{\footnotesize\ttfamily void Graph\+::add\+\_\+interfaced\+\_\+edge (\begin{DoxyParamCaption}\item[{int}]{idx,  }\item[{int}]{vert1,  }\item[{int}]{vert2,  }\item[{double}]{weight = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Aide à l\textquotesingle{}ajout d\textquotesingle{}arcs interfacés 
+
+O\+O\+O\+PS ! Prendre en compte l\textquotesingle{}arc ajouté dans la topologie du graphe ! \mbox{\Hypertarget{class_graph_a1816977c1c169d9df917ddacb3e69f09}\label{class_graph_a1816977c1c169d9df917ddacb3e69f09}} 
+\index{Graph@{Graph}!button@{button}}
+\index{button@{button}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{button()}{button()}}
+{\footnotesize\ttfamily int Graph\+::button (\begin{DoxyParamCaption}\item[{int}]{choice }\end{DoxyParamCaption})}
+
+del\+\_\+interfaced\+\_\+edge(a, b); \mbox{\hyperlink{class_vertex_interface}{Vertex\+Interface}} $\ast$vi = new \mbox{\hyperlink{class_vertex_interface}{Vertex\+Interface(idx, x, y, pic\+\_\+name, pic\+\_\+idx)}}; m\+\_\+interface-\/$>$m\+\_\+main\+\_\+box.\+remove\+\_\+child(vi-\/$>$m\+\_\+top\+\_\+box); \mbox{\Hypertarget{class_graph_a5516f61e268b4d26ec632b694c0c1cbb}\label{class_graph_a5516f61e268b4d26ec632b694c0c1cbb}} 
+\index{Graph@{Graph}!del\+\_\+interfaced\+\_\+edge@{del\+\_\+interfaced\+\_\+edge}}
+\index{del\+\_\+interfaced\+\_\+edge@{del\+\_\+interfaced\+\_\+edge}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{del\+\_\+interfaced\+\_\+edge()}{del\_interfaced\_edge()}}
+{\footnotesize\ttfamily void Graph\+::del\+\_\+interfaced\+\_\+edge (\begin{DoxyParamCaption}\item[{int}]{vert1,  }\item[{int}]{vert2 }\end{DoxyParamCaption})}
+
+
+
+Aide à la suppression d\textquotesingle{}arcs interfacés 
+
+\mbox{\hyperlink{class_edge_interface}{Edge\+Interface}} $\ast$ei = new \mbox{\hyperlink{class_edge_interface}{Edge\+Interface(m\+\_\+vertices\mbox{[}id\+\_\+vert1\mbox{]}, m\+\_\+vertices\mbox{[}id\+\_\+vert2\mbox{]})}}; m\+\_\+interface-\/$>$m\+\_\+main\+\_\+box.\+remove\+\_\+child(ei-\/$>$m\+\_\+top\+\_\+edge); \mbox{\Hypertarget{class_graph_a33b4e0f78b1987ecb80b204ec87fe97d}\label{class_graph_a33b4e0f78b1987ecb80b204ec87fe97d}} 
+\index{Graph@{Graph}!display\+\_\+menu@{display\+\_\+menu}}
+\index{display\+\_\+menu@{display\+\_\+menu}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{display\+\_\+menu()}{display\_menu()}}
+{\footnotesize\ttfamily int Graph\+::display\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+rest(100); \mbox{\Hypertarget{class_graph_a3f71937bb0160972192b086cf258d49c}\label{class_graph_a3f71937bb0160972192b086cf258d49c}} 
+\index{Graph@{Graph}!make\+\_\+example@{make\+\_\+example}}
+\index{make\+\_\+example@{make\+\_\+example}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{make\+\_\+example()}{make\_example()}}
+{\footnotesize\ttfamily int Graph\+::make\+\_\+example (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Méthode spéciale qui construit un graphe arbitraire (démo) Voir implémentation dans le .cpp Cette méthode est à enlever et remplacer par un système de chargement de fichiers par exemple.
+
+Méthode spéciale qui construit un graphe arbitraire (démo) Cette méthode est à enlever et remplacer par un système de chargement de fichiers par exemple. Bien sûr on ne veut pas que vos graphes soient construits \char`\"{}à la main\char`\"{} dans le code comme ça. Les sommets doivent être définis avant les arcs Ajouter le sommet d\textquotesingle{}indice 0 de valeur 30 en x=200 et y=100 avec l\textquotesingle{}image clown1.\+jpg etc... ~\newline
+ Les arcs doivent être définis entrefic\+Name des sommets qui existent ! 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+graph.\+h\item 
+graph.\+cpp\end{DoxyCompactItemize}

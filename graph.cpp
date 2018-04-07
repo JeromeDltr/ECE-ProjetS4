@@ -163,13 +163,16 @@ int Graph::make_example()      // load depuis les fichier
     choice=display_menu();  //  propose les 3 graphes
     int a, b, c, nb;
     double d;
+
     std::string ficName, ficNameEdge, ch1;
+
     if(choice==1)
         ficName = "base.txt";
     if(choice==2)
         ficName = "sea.txt";
     if(choice==3)
         ficName = "savane.txt";
+
     std::ifstream fic(ficName, std::ios::in);
 
 
