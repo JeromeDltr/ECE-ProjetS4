@@ -221,9 +221,11 @@ void buf_afficher_page()
     acquire_screen();
 
     rectfill(page, 0, 0, 100, 100, makecol(100, 0, 0));
-    textprintf_centre_ex(page, font, 50, 50, makecol(255,255,255), -1,"Supprimer");///
+    textprintf_centre_ex(page, font, 50, 50, makecol(255,255,255), -1,"Supprimer");//       Bouton supprimer
     rectfill(page, 100, 0, 200, 100, makecol(0, 100, 0));
-    textprintf_centre_ex(page, font, 150, 50, makecol(255,255,255), -1,"Ajouter");///
+    textprintf_centre_ex(page, font, 150, 50, makecol(255,255,255), -1,"Ajouter");//       Bouton ajouter
+    rectfill(page, 200, 0, 300, 100, makecol(0, 0, 100));
+    textprintf_centre_ex(page, font, 250, 50, makecol(255,255,255), -1,"Sauver");//       Bouton ajouter
 
     blit(page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
     release_screen();

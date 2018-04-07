@@ -6,7 +6,7 @@
 int main()
 {
     int bo=1;
-                int a;
+                int a, choice;
 
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     do
@@ -18,7 +18,7 @@ int main()
         Graph g;
 
         /// Un exemple de graphe
-        g.make_example();
+        choice = g.make_example();
 
         /// Vous gardez la main sur la "boucle de jeu"
         /// ( contrairement à des frameworks plus avancés )
@@ -31,7 +31,8 @@ int main()
             grman::mettre_a_jour();
 
 
-                bo = g.button();
+                bo = g.button(choice);
+                //g.save_file();                /               FAIRE POUR LES DIFFERENTS GRAPHES
         }
 
         grman::fermer_allegro();

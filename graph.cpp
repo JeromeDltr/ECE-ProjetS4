@@ -157,10 +157,10 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 /// de chargement de fichiers par exemple.
 /// Bien sûr on ne veut pas que vos graphes soient construits
 /// "à la main" dans le code comme ça.
-void Graph::make_example()
+int Graph::make_example()      // load depuis les fichier
 {
     int choice;
-    choice=display_menu();
+    choice=display_menu();  //  propose les 3 graphes
     int a, b, c, nb;
     double d;
     std::string ficName, ficNameEdge, ch1;
@@ -168,7 +168,7 @@ void Graph::make_example()
         ficName = "base.txt";
     if(choice==2)
         ficName = "sea.txt";
-        if(choice==3)
+    if(choice==3)
         ficName = "savane.txt";
     std::ifstream fic(ficName, std::ios::in);
 
@@ -196,8 +196,8 @@ void Graph::make_example()
             ch1 = "0";
             getline(fic, ch1);
 
-        /// Les sommets doivent être définis avant les arcs
-        /// Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+            /// Les sommets doivent être définis avant les arcs
+            /// Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
             add_interfaced_vertex(a, d, b, c, ch1);
         }
         fic.close();  // on ferme le fichier
@@ -221,13 +221,15 @@ void Graph::make_example()
             fic2>>d;
             getline(fic2, ch1);
             /// Les arcs doivent être définis entreficName des sommets qui existent !
-    // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
+            // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
             add_interfaced_edge(a, b, c, d);
         }
         fic2.close();  // on ferme le fichier
 
         std::cout<<"fichier edge"<<std::endl;
     }
+
+    return choice;
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -343,40 +345,130 @@ int Graph::display_menu()
             a=false;
         }
         ///rest(100);
-    }while(a==true);
+    }
+    while(a==true);
     return b;
 }
 
 
-int Graph::button()
+int Graph::button(int choice)
 {
     int a, b;
 
+    if((mouse_b&1) && (mouse_x>=0) && (mouse_x<=100) && (mouse_y>=0) && (mouse_y<=100))     // && (bo!=2)
+    {
+        std::cout<<"Quel est le premier sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
+        std::cin >>a;
+        std::cout<<"Quel est le deuxieme sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
+        std::cin >>b;
+        std::cout<<"Vous allez supprimer l'arete entre "<<a<<" et "<<b<<std::endl;
 
-    //m_vertices.erase(a);
+        ///del_interfaced_edge(a, b);
+        ///VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
+        ///m_interface->m_main_box.remove_child(vi->m_top_box);
+    }
 
-        if((mouse_b&1) && (mouse_x>=0) && (mouse_x<=100) && (mouse_y>=0) && (mouse_y<=100))     // && (bo!=2)
-        {
-            std::cout<<"Quel est le premier sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
-            std::cin >>a;
-            std::cout<<"Quel est le deuxieme sommet de l'arete que vous-voulez supprimer ?"<<std::endl;
-            std::cin >>b;
-            std::cout<<"Vous allez supprimer l'arete entre "<<a<<" et "<<b<<std::endl;
-            ///del_interfaced_edge(a, b);
-            ///VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
-            ///m_interface->m_main_box.remove_child(vi->m_top_box);
-        }
+    if((mouse_b&1) && (mouse_x>=100) && (mouse_x<=200) && (mouse_y>=0) && (mouse_y<=100))
+        add_edge();
 
-        if((mouse_b&1) && (mouse_x>=100) && (mouse_x<=200) && (mouse_y>=0) && (mouse_y<=100))     // && (bo!=2)
-        {
-            std::cout<<"Vous allez ajouter un sommet"<<std::endl;
-            std::cout<<"Vous allez supprimer l'arete entre "<<a<<std::endl;
-            //add_interfaced_vertex(a, d, b, c, ch1);
-            ///del_interfaced_edge(a, b);
-            ///VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
-            ///m_interface->m_main_box.remove_child(vi->m_top_box);
-        }
-        return 0;
+    if((mouse_b&1) && (mouse_x>=200) && (mouse_x<=300) && (mouse_y>=0) && (mouse_y<=100))
+        save_file(choice);
+
+    return 0;
 }
 
+
+void Graph::save_file(int choice)     //std::string ficName
+{
+
+    std::string ficName, ch;
+    if(choice==1)
+    {
+        ficName = "base.txt";
+        ch = "base-edge.txt";
+    }
+
+    if(choice==2)
+    {
+        ficName = "sea.txt";
+        ch = "sea-edge.txt";
+    }
+    if(choice==3)
+    {
+        ficName = "savane.txt";
+        ch = "savane-edge.txt";
+    }
+
+    std::ofstream fic(ficName, std::ios::out | std::ios::trunc);
+    std::ofstream fic2(ficName, std::ios::out | std::ios::trunc);
+
+    if (fic)
+    {
+        fic << ch<<std::endl;
+        fic << m_vertices.size() << std::endl;
+        for(unsigned int i = 0 ; i < m_vertices.size() ; i++)
+        {
+            fic<<i<<"\n"<< m_vertices[i].m_interface->m_slider_value.get_value() <<".0\n";
+            fic<<m_vertices[i].m_interface->m_top_box.get_posx() +3<<"\n";
+            fic<<m_vertices[i].m_interface->m_top_box.get_posy() +3<<"\n";
+            fic<<m_vertices[i].m_interface->m_img.get_pic_name() <<"\n"<<std::endl;
+        }
+    }
+    else
+        std::cout << "erreur lors de la sauvegarde" << std::endl;
+    fic.close();
+
+    /*if(fic2)
+    {
+        fic2 << m_edges.size() << std::endl;       // sauvegarde des  aretes
+
+        for(unsigned int j = 0 ; j < m_edges.size() ; j++)
+            fic << m_edges[j].m_from << " " << m_edges[j].m_to << std::endl;
+    }
+    else
+        std::cout << "erreur lors de la sauvegarde" << std::endl;
+    fic2.close();   */
+
+}
+
+
+void Graph::add_edge()
+{
+    int n=0;
+    int s1, s2;
+    double poid;
+    bool possible =false;
+    do
+    {
+        if (m_edges.count(n)==1)
+        {
+            n++;
+        }
+        else
+        {
+            possible = true;
+
+        }
+    }
+    while (!possible);
+    do
+    {
+        system("cls");
+        std::cout<<"Choisir un sommet de départ:" ;
+        std::cin>>s1;
+        std::cout<<"Choisir un sommet de d'arrivée:" ;
+        std::cin>>s2;
+    }
+    while(s1 ==s2);
+    do
+    {
+        std::cout<<"Choisir un poid entre 0 et 100:" ;
+        std::cin >> poid;
+
+    }
+    while(poid<0 || poid>100);
+
+    add_interfaced_edge(n,s1,s2,poid);
+    system("cls");
+}
 
